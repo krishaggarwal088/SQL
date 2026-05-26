@@ -1,26 +1,29 @@
---Create a noble win table if it doesn't exist
-CREATE TABLE IF NOT EXISTS NOBLE_WIN (
-    YEAR INT,
-    SUBJECT TEXT,
-    WINNER TEXT,
-    COUNTRY TEXT,
-    CATEGORY TEXT
+--Create the product table if it does not exist
+CREATE TABLE IF NOT EXISTS PRODUCTS (
+    PRODUCT_ID TEXT,
+    PRODUCT_NAME TEXT,
+    SUPPLIER_ID TEXT,
+    CATEGORY_ID TEXT,
+    UNIT TEXT,
+    PRICE REAL
 );
 
---Insert sample data into the NOBLE_WIN table
-INSERT INTO NOBLE_WIN (YEAR, SUBJECT, WINNER, COUNTRY, CATEGORY) VALUES
-(1970, 'PHYSICS', 'HANNES ALFVEN', 'SWEDEN', 'SCIENTIST'),
-(1970, 'PHYSICS', 'LOUIS NEEL', 'FRANCE', 'SCIENTIST'),
-(1971, 'PHYSICS', 'PAUL', 'FRANCE', 'SCIENTIST'),
-(1971, 'CHEMISTRY', 'HAMILTON', 'SWEDEN', 'LINGUIST'),
-(1972, 'LITERATURE', 'BERNARD KELSON', 'GERMANY', 'ECONOMIST'),
-(1972, 'ECONOMICS', 'JOSEPH', 'RUSSIA', 'ECONOMIST'),
-(1973, 'BIOLOGY', 'PHILIPS', 'USA', 'PRIME MINISTER'),
-(1980, 'BIOLOGY', 'MARTIN', 'USA', 'PRESIDENT'),
-(1981, 'PHYSIOLOGY', 'HANNAH', 'HUNGARY', 'SCIENTIST'),
-(1975, 'PHYSICS', 'PETER', 'CHILE', 'SCIENTIST');
+--Insert sample data into the product table
+INSERT INTO PRODUCTS (PRODUCT_ID, PRODUCT_NAME, SUPPLIER_ID, CATEGORY_ID, UNIT, PRICE) VALUES
+('1', 'Chai', '1', '1', '10 boxes * 20 bags', 18),
+('2', 'Chang', '1', '1', '24 - 12 oz bottles', 19),
+('3', 'Aniseed Syrup', '1', '2', '12 - 550 ml bottles', 10),
+('4', 'Chef Anton Seasoning', '2', '2', '48 - 6 oz jars', 22),
+('5', 'Chef Anton Mix', '2', '2', '36 boxes', 21.35);
 
---Select all records from the NOBLE_WIN table where the subject does not start with 'P'
-SELECT*
-FROM NOBLE_WIN
-WHERE SUBJECT NOT LIKE 'P%';
+--Query to count the number of products 
+SELECT COUNT(PRODUCT_ID) AS Product_Count
+FROM PRODUCTS;
+
+--Query to calculate the average price of products
+SELECT AVG(PRICE) AS Average_PricE
+FROM PRODUCTS;
+
+--Query to find the total price of products
+SELECT SUM(PRICE) AS Total_Price
+FROM PRODUCTS;

@@ -1,29 +1,36 @@
---Create the product table if it does not exist
-CREATE TABLE IF NOT EXISTS PRODUCTS (
-    PRODUCT_ID TEXT,
-    PRODUCT_NAME TEXT,
-    SUPPLIER_ID TEXT,
-    CATEGORY_ID TEXT,
-    UNIT TEXT,
-    PRICE REAL
+-- Create the STUDENT table if it does not exist
+-- NOT NULL is used for NAME to ensure every student record has a name
+CREATE TABLE IF NOT EXISTS STUDENT (
+    ROLL_NO TEXT PRIMARY KEY,
+    NAME TEXT NOT NULL,
+    ADDRESS TEXT,
+    PHONE TEXT,
+    AGE INTEGER
 );
 
---Insert sample data into the product table
-INSERT INTO PRODUCTS (PRODUCT_ID, PRODUCT_NAME, SUPPLIER_ID, CATEGORY_ID, UNIT, PRICE) VALUES
-('1', 'Chai', '1', '1', '10 boxes * 20 bags', 18),
-('2', 'Chang', '1', '1', '24 - 12 oz bottles', 19),
-('3', 'Aniseed Syrup', '1', '2', '12 - 550 ml bottles', 10),
-('4', 'Chef Anton Seasoning', '2', '2', '48 - 6 oz jars', 22),
-('5', 'Chef Anton Mix', '2', '2', '36 boxes', 21.35);
+-- Insert sample data into the STUDENT table
+INSERT INTO STUDENT (ROLL_NO, NAME, ADDRESS, PHONE, AGE) VALUES
+('1', 'RAM', 'DELHI', '******', 18),
+('2', 'RAMESH', 'GURGAON', '******', 18),
+('3', 'SUJIT', 'ROHTAK', '******', 20),
+('4', 'SURESH', 'DELHI', '******', 18),
+('5', 'AMAN', 'ROHTAK', '******', 20),
+('6', 'HARSH', 'GURGAON', '******', 18);
 
---Query to count the number of products 
-SELECT COUNT(PRODUCT_ID) AS Product_Count
-FROM PRODUCTS;
+-- Select all records from the STUDENT table to verify insertion
+SELECT * FROM STUDENT;
 
---Query to calculate the average price of products
-SELECT AVG(PRICE) AS Average_PricE
-FROM PRODUCTS;
+-- Query students who are 18 years old and live in Delhi
+SELECT * FROM STUDENT WHERE AGE = 18 AND ADDRESS = 'DELHI';
 
---Query to find the total price of products
-SELECT SUM(PRICE) AS Total_Price
-FROM PRODUCTS;
+-- Query students who are 18 years old and named RAM
+SELECT * FROM STUDENT WHERE AGE = 18 AND NAME = 'RAM';
+
+-- Query students named Ram or Sujit
+SELECT * FROM STUDENT WHERE NAME = 'RAM' OR NAME = 'SUJIT';
+
+-- Query students named Ram or aged 20
+SELECT * FROM STUDENT WHERE NAME = 'RAM' OR AGE = 20;
+
+-- Query students aged 18 and named Ram or Ramesh
+SELECT * FROM STUDENT WHERE AGE = 18 AND (NAME = 'RAM' OR NAME = 'RAMESH');
